@@ -170,8 +170,8 @@ def conference(box):
         cx = x0 + 26 + i * ((x1 - x0 - 50) / 5)
         d.ellipse([cx - 9, y1 - 34, cx + 9, y1 - 16], fill=(35, 58, 54))
         d.rectangle([cx - 11, y1 - 16, cx + 11, y1], fill=(35, 58, 54))
-    d.rectangle([x1 - 96, y0 + 12, x1 - 10, y0 + 44], fill=WHITE, outline=RED, width=2)
-    text(x1 - 53, y0 + 19, "NO DEAL", font(COND, 13), RED, "mt")
+    d.rectangle([x1 - 96, y1 - 38, x1 - 10, y1 - 8], fill=WHITE, outline=RED, width=2)
+    text(x1 - 53, y1 - 31, "NO DEAL", font(COND, 13), RED, "mt")
 
 
 def ship(box, fire=False):
@@ -327,15 +327,15 @@ def icon(kind, box):
 leads = [
     ("ANTALYA, TÜRKIYE · CLIMATE", RED, "conference",
      "COP31 ends with no deal",
-     "Nearly 200 nations failed to agree a final text after the EU and others rejected a draft that omitted fossil fuels — the first breakdown of its kind in 17 years.",
+     "Nearly 200 nations failed to agree a final text after the EU and others rejected a draft that omitted fossil fuels — the first breakdown of its kind in 17 years. President Murat Kurum announced the impasse at the closing plenary.",
      "Reuters · AP · CNN"),
     ("GULF · WAR & ENERGY", RED, "radar",
      "Iran's barrage shakes the Gulf",
-     "Trump said Iran launched more missiles and drones in a week than at any time in a year. Iran's navy said two tankers hit mines in Hormuz; Gulf markets fell.",
+     "Trump said Iran launched more missiles and drones in a week than at any time in a year. Iran's navy said two tankers hit mines in Hormuz; Gulf markets fell and Iran claimed strikes on US bases in Bahrain, which Manama denied.",
      "Reuters · Euronews · AP"),
     ("KYIV REGION, UKRAINE · WAR", INK, "drones",
      "186 drones; four dead, 14 missing",
-     "Air defences downed or suppressed 161 of the overnight strike drones. Part of a five-storey block collapsed; a ship burned in the Baltic as the war widened.",
+     "Air defences downed or suppressed 161 of the overnight strike drones. Part of a five-storey block collapsed in Dymer; a cargo ship burned in the Baltic and Finland said the war was spilling beyond the Black Sea.",
      "Reuters · Guardian · AP"),
 ]
 
@@ -346,8 +346,10 @@ for i, (label, col, art, title, body, source) in enumerate(leads):
     d.rectangle([x, y, x + cw, y + 238], fill=PAPER, outline=INK, width=1)
     icon(art, (x + 1, y + 1, x + cw - 1, y + 93))
     chip(x + 8, y + 8, label, col)
+    d.rectangle([x + cw - 78, y + 8, x + cw - 8, y + 25], fill=(18, 33, 46))
+    text(x + cw - 43, y + 10, "22 NOV · UTC", font(COND, 10), WHITE, "mt")
     yy = para(x + 10, y + 100, title, font(SERIF_B, 23), cw - 20, 26, INK, 3)
-    yy = para(x + 10, yy + 5, body, font(SANS, 12), cw - 20, 15, INK, 5)
+    yy = para(x + 10, yy + 5, body, font(SANS, 12), cw - 20, 15, INK, 4)
     text(x + 10, y + 227, source, font(COND, 10), GRAY)
 
 # ---------------------------------------------------------------- ten stories
@@ -374,6 +376,8 @@ for i, (where, art, headline, source) in enumerate(ten):
     y = 538 + row * 100
     d.rectangle([x, y, x + gw, y + 96], fill=PAPER, outline=(190, 190, 182), width=1)
     icon(art, (x + 1, y + 1, x + gw - 1, y + 33))
+    d.rectangle([x + gw - 51, y + 3, x + gw - 4, y + 17], fill=(18, 33, 46))
+    text(x + gw - 27, y + 4, "22 NOV", font(COND, 8), WHITE, "mt")
     text(x + 6, y + 35, where.upper(), font(COND, 10), RED)
     para(x + 6, y + 47, headline, font(SANS_B, 11), gw - 12, 13, INK, 3)
     text(x + 6, y + 87, source, font(COND, 8), GRAY)
@@ -434,19 +438,21 @@ more = [
     "Tennis: Alcaraz beats Zverev for a first ATP Finals title",
     "NWSL: Kansas City Current win the final 2–1 in Washington",
     "Kyiv: 14 still missing after a block collapses in a drone attack",
+    "Czech central bank lifts rates again as energy costs rise",
+    "Fukushima: road access restored to a snow-hit mountain village",
 ]
 for i, s in enumerate(more):
-    col, row = divmod(i, 10)
+    col, row = divmod(i, 11)
     x = 414 + col * 296
-    y = 772 + row * 12
+    y = 770 + row * 11
     d.ellipse([x, y + 3, x + 4, y + 7], fill=RED)
     text(x + 9, y, s, font(SANS, 10), INK)
 
 # ---------------------------------------------------------------- date check
 d.rectangle([14, 906, 1010, 958], fill=(238, 234, 224), outline=RED, width=2)
-text(24, 911, "DATE CHECK — READ THIS FIRST", font(COND, 12), RED)
-text(24, 928, "Every story on this page was reported on Sunday 22 November 2026. Earlier-week events appear here only as", font(SANS, 11), INK)
-text(24, 942, "context, never as the day's news. Times are UTC unless noted. Scenes are original illustrations, not photographs.", font(SANS, 11), INK)
+text(24, 910, "DATE CHECK — READ THIS FIRST · 35 STORIES · 7 REGIONS", font(COND, 12), RED)
+text(24, 925, "Every item was reported on Sunday 22 November 2026. Earlier-week events appear only where a Sunday report is itself the story.", font(SANS, 11), INK)
+text(24, 939, "Times are UTC. A party's claim is labelled as a claim. Scenes are original drawings, not photographs; sources are named with each item.", font(SANS, 11), INK)
 
 # ---------------------------------------------------------------- footer
 d.rectangle([0, 964, W, H], fill=INK)
